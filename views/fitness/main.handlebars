@@ -1,0 +1,20 @@
+<h2>Welcome, {{username}}!</h2>
+<h3>Fitness Tracker</h3>
+<p>Calories Consumed: {{totalCalories}}</p>
+<form method="POST" action="/fitness/add">
+  <div class="form-group">
+    <input type="number" name="calories" class="form-control" placeholder="Enter calories" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Add Calories</button>
+</form>
+<button class="btn btn-danger mt-3" onclick="window.location.href='/auth/logout'">Log Out</button>
+{{#if fitnessData}}
+  <h4 class="mt-4">Fitness Data:</h4>
+  <ul class="list-group">
+    {{#each fitnessData}}
+      <li class="list-group-item">{{calories}} calories</li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No fitness data available.</p>
+{{/if}}
