@@ -41,6 +41,6 @@ app.use('/auth', authRoutes);
 app.use('/fitness', fitnessRoutes);
 
 // Start the server
-app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
-});
+sequelize.sync({ force: false }).then(() => {
+    app.listen(PORT, () => console.log(`Now listening on port ${PORT}`));
+  });
