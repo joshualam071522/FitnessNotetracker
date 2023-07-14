@@ -22,16 +22,6 @@ Meal.init(
         calories: {
           type: DataTypes.INTEGER,
           allowNull: false,
-          validate: {
-            len: [8],
-          },
-        },
-        user_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'user',
-                key: 'id'
-            },
         },
       },
       {

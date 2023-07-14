@@ -20,9 +20,10 @@ User.init(
       password: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          len: [8],
-        },
+        //* add in later to require atleast 8 characters
+        // validate: {
+        //   len: [8],
+        // },
       },
     },
     {
