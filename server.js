@@ -2,7 +2,10 @@ const express = require('express');
 const session = require('express-session');
 const path = require('path');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
+
+//* env variable
+const sequelize = require('./config/connection');
 
 // Set up static folder
 app.use(express.static(path.join(__dirname, 'app/public')));
@@ -30,15 +33,8 @@ app.engine(
   })
 );
 
-// Import routes
-const indexRoutes = require('./app/routes/index');
-const authRoutes = require('./app/routes/authRoutes');
-const fitnessRoutes = require('./app/routes/fitnessRoutes');
-
-// Use routes
-app.use('/', indexRoutes);
-app.use('/auth', authRoutes);
-app.use('/fitness', fitnessRoutes);
+//* imports the controller routes
+app.use(require('./controllers'));
 
 // Start the server
 sequelize.sync({ force: false }).then(() => {

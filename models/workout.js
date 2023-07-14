@@ -22,16 +22,6 @@ Workout.init(
         time: {
           type: DataTypes.INTEGER,
           allowNull: false,
-          validate: {
-            len: [8],
-          },
-        },
-        user_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'user',
-                key: 'id'
-            },
         },
       },
       {
@@ -43,4 +33,4 @@ Workout.init(
     }
 );
 
-module.exports = workout;
+module.exports = Workout;
