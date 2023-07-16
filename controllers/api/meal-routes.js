@@ -26,11 +26,9 @@ router.get('/:id', async (req, res) => {
         }
 
         res.status(200).json(mealData);
-        //TODO code to render handlebars for dish?
+        //TODO code to render handlebars for meal?
         // const meal = mealData.get({ plain: true });
-        // res.render('dish', dish);
-
-
+        // res.render('meal', Meal);
       } catch (err) {
           res.status(500).json(err);
       };     
