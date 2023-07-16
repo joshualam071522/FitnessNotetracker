@@ -1,20 +1,80 @@
 <h2>Welcome, {{username}}!</h2>
 <h3>Fitness Tracker</h3>
 <p>Calories Consumed: {{totalCalories}}</p>
-<form method="POST" action="/fitness/add">
-  <div class="form-group">
-    <input type="number" name="calories" class="form-control" placeholder="Enter calories" required>
+
+<h3>Add new box</h3>
+{{#each boxes}}
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" class="form-control" id="title" name="title">
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary">Add Calories</button>
-</form>
-<button class="btn btn-danger mt-3" onclick="window.location.href='/auth/logout'">Log Out</button>
-{{#if fitnessData}}
-  <h4 class="mt-4">Fitness Data:</h4>
-  <ul class="list-group">
-    {{#each fitnessData}}
-      <li class="list-group-item">{{calories}} calories</li>
-    {{/each}}
-  </ul>
-{{else}}
-  <p>No fitness data available.</p>
-{{/if}}
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="content">Content:</label>
+      <input type="text" class="form-control" id="content" name="content">
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group">
+      <label for="calories">Calories:</label>
+      <input type="number" class="form-control" id="calories" name="calories">
+    </div>
+  </div>
+  <div class="col-md-1">
+    <button class="btn btn-danger mt-4" onclick="removeBox(this)">X</button>
+  </div>
+</div>
+{{/each}}
+
+<button class="btn btn-primary" onclick="addNewBox()">Add new box</button>
+
+<h3>Workout Plan</h3>
+{{#each workouts}}
+<div class="form-group">
+  <label for="workout">Enter Workout Plan here:</label>
+  <input type="text" class="form-control" id="workout" name="workout">
+  <button class="btn btn-danger mt-2" onclick="removeWorkout(this)">X</button>
+</div>
+{{/each}}
+
+<button class="btn btn-primary" onclick="addNewWorkout()">Add new workout plan</button>
+
+<script>
+    function addNewBox() {
+      const newBox = `
+        <div class="row mt-2">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="title">Title:</label>
+              <input type="text" class="form-control" id="title">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="content">Content:</label>
+              <input type="text" class="form-control" id="content">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="calories">Calories:</label>
+              <input type="number" class="form-control" id="calories">
+            </div>
+          </div>
+        </div>
+      `;
+      document.querySelector('.container').insertAdjacentHTML('beforeend', newBox);
+    }
+
+    function addNewWorkout() {
+      const newWorkout = `
+        <div class="form-group mt-2">
+          <label for="workout">Enter Workout Plan here:</label>
+          <input type="text" class="form-control" id="workout">
+        </div>
+      `;
+      document.querySelector('.container').insertAdjacentHTML('beforeend', newWorkout);
+    }</script>
