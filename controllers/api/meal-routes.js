@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const Meal = require('../../models/Meal');
 
+//TODO add get routes for user's meals
+
 router.post('/', async (req, res) => {
     try {
         const mealData = await Meal.create({

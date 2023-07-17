@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const Workout = require('../../models/workout');
 
+//TODO add get routes for user's workouts
+
 router.post('/', async (req, res) => {
     try {
         const workoutData = await Workout.create({
@@ -9,7 +11,7 @@ router.post('/', async (req, res) => {
         time: req.body.time    
         })
     
-        res.status(200).json(mealData)
+        res.status(200).json(workoutData)
         
     } catch (err) {
         res.status(500).json(err);
