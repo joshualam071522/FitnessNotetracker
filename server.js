@@ -1,8 +1,14 @@
 const express = require('express');
 const session = require('express-session');
+
+//* temporary exphbs import
+const exphbs = require('express-handlebars');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+//* temporary create handlebars instance
+const hbs = exphbs.create({});
 
 //* env variable
 const sequelize = require('./config/connection');
@@ -21,17 +27,24 @@ app.use(session({
   saveUninitialized: true
 }));
 
-// Set up Handlebars as the view engine
-app.set('views', path.join(__dirname, 'app/views'));
+//*temporary code to set up handlebars
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
-const exphbs = require('express-handlebars');
-app.engine(
-  'handlebars',
-  exphbs({
-    defaultLayout: 'main',
-    layoutsDir: path.join(__dirname, 'app/views/layouts')
-  })
-);
+app.use(express.static(path.join(__dirname, 'public')));
+
+//*Jedidiahs code, temporarily commented out
+// Set up Handlebars as the view engine
+// app.set('views', path.join(__dirname, 'app/views'));
+// app.set('view engine', 'handlebars');
+
+// const exphbs = require('express-handlebars');
+// app.engine(
+//   'handlebars',
+//   exphbs({
+//     defaultLayout: 'main',
+//     layoutsDir: path.join(__dirname, 'app/views/layouts')
+//   })
+// );
 
 //* imports the controller routes
 app.use(require('./controllers'));
@@ -39,4 +52,5 @@ app.use(require('./controllers'));
 // Start the server
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`Now listening on port ${PORT}`));
-
+  }
+)
