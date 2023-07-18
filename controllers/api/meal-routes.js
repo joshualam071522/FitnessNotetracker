@@ -41,7 +41,6 @@ router.get('/user', async (req, res) => {
       };     
   });
 
-//TODO information updates successfully, but insomnia gives 500 error
 router.put('/:id', async (req, res) => {
     try {
         const updatedMealData = await Meal.update({
@@ -58,14 +57,15 @@ router.put('/:id', async (req, res) => {
         }
     )
 
-    if (!mealData) {
+    if (!updatedMealData) {
         res.status(404).json({ message: 'No meal found with this id!' });
         return;
     }
         res.status(200).json(updatedMealData);
         
     } catch (err) {
-        res.status(500).json(err);
+        console.log(err);
+        res.status(500).json("oops, something went wrong!");
     }
 })
 
