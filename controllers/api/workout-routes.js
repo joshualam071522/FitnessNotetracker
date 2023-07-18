@@ -1,57 +1,73 @@
 const router = require('express').Router();
-const Workout = require('../../models/workout');
+//* imports index.js file too
+const {Workout, User} = require('../../models');
 
 //TODO add get routes for user's workouts
 
 router.post('/', async (req, res) => {
+    
     try {
-        const workoutData = await Workout.create({
+        console.log(req.session.user_id)
+        const newWorkout = await Workout.create({
         title: req.body.title,
         content: req.body.content,
-        time: req.body.time    
+        time: req.body.time,
+        user_id: req.session.user_id,
         })
     
-        res.status(200).json(workoutData)
+        res.status(200).json(newWorkout)
         
     } catch (err) {
         res.status(500).json(err);
     }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/user', async (req, res) => {
     try{ 
-        const workoutData = await Workout.findByPk(req.params.id);
+        console.log(req.session);
+        const workoutData = await User.findByPk(req.session.user_id, {
+            include: [{model: Workout}]
+        });
         
-        if(!mealData) {
-            res.status(404).json({message: 'No meal with this id!'});
+        if(!workoutData) {
+            res.status(404).json({message: 'No workouts found for this user!'});
             return;
         }
 
-        res.status(200).json(mealData);
+        res.status(200).json(workoutData);
         //TODO code to render handlebars for workout?
-        // const meal = workoutData.get({ plain: true });
+        // const workout = workoutData.get({ plain: true });
         // res.render('workout', Workout);
       } catch (err) {
           res.status(500).json(err);
       };     
   });
 
-  router.put('/:id', async (req, res) => {
+//TODO information updates successfully, but insomnia gives 500 error
+router.put('/:id', async (req, res) => {
     try {
-        const updatedworkoutData = await Workout.update({
+        const updatedWorkoutData = await Workout.update(
+        {
         title: req.body.title,
         content: req.body.content,
-        time: req.body.time    
+        time: req.body.time,
         }, 
         {
             where: {
                 id: req.params.id,
+                user_id: req.session.user_id,
             },
         }
     )
+
+    if (!workoutData) {
+        res.status(404).json({ message: 'No workout found with this id!' });
+        return;
+    }
         res.status(200).json(updatedWorkoutData);
         
     } catch (err) {
+        console.log(err)
         res.status(500).json(err);
     }
 })
@@ -59,16 +75,16 @@ router.get('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         const workoutData = await Workout.destroy({
-        title: req.body.title,
-        content: req.body.content,
-        time: req.body.time    
-        }, 
-        {
             where: {
                 id: req.params.id,
+                user_id: req.session.user_id,
             },
         }
     )
+    if (!workoutData) {
+        res.status(404).json({ message: 'No workout found with this id!' });
+        return;
+    }
         res.status(200).json(workoutData);
         
     } catch (err) {
@@ -77,4 +93,3 @@ router.delete('/:id', async (req, res) => {
 })
 
 module.exports = router;
-

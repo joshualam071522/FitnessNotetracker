@@ -7,14 +7,13 @@ User.hasMany(Meal, {
     onDelete: 'CASCADE',
 })
 
+Meal.belongsTo(User, {
+    foreignKey: 'user_id',
+})
+
 User.hasMany(Workout, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE',
-})
-
-
-Meal.belongsTo(User, {
-    foreignKey: 'user_id',
 })
 
 Workout.belongsTo(User, {
