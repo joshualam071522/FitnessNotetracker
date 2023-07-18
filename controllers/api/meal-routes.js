@@ -1,29 +1,34 @@
 const router = require('express').Router();
-const Meal = require('../../models/Meal');
-
-//TODO add get routes for user's meals
+//* imports index.js file too
+const {Meal, User} = require('../../models');
 
 router.post('/', async (req, res) => {
+    
     try {
-        const mealData = await Meal.create({
+        console.log(req.session.user_id)
+        const newMeal = await Meal.create({
         title: req.body.title,
         content: req.body.content,
-        calories: req.body.calories    
+        calories: req.body.calories,
+        user_id: req.session.user_id,
         })
     
-        res.status(200).json(mealData)
+        res.status(200).json(newMeal)
         
     } catch (err) {
         res.status(500).json(err);
     }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/user', async (req, res) => {
     try{ 
-        const mealData = await Meal.findByPk(req.params.id);
+        console.log(req.session);
+        const mealData = await User.findByPk(req.session.user_id, {
+            include: [{model: Meal}]
+        });
         
         if(!mealData) {
-            res.status(404).json({message: 'No meal with this id!'});
+            res.status(404).json({message: 'No meals found with user id!'});
             return;
         }
 
@@ -36,19 +41,27 @@ router.get('/:id', async (req, res) => {
       };     
   });
 
+//TODO information updates successfully, but insomnia gives 500 error
 router.put('/:id', async (req, res) => {
     try {
         const updatedMealData = await Meal.update({
+        
         title: req.body.title,
         content: req.body.content,
-        calories: req.body.calories    
+        calories: req.body.calories,
         }, 
         {
             where: {
                 id: req.params.id,
+                user_id: req.session.user_id,
             },
         }
     )
+
+    if (!mealData) {
+        res.status(404).json({ message: 'No meal found with this id!' });
+        return;
+    }
         res.status(200).json(updatedMealData);
         
     } catch (err) {
@@ -59,16 +72,16 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         const mealData = await Meal.destroy({
-        title: req.body.title,
-        content: req.body.content,
-        calories: req.body.calories    
-        }, 
-        {
             where: {
                 id: req.params.id,
+                user_id: req.session.user_id,
             },
         }
     )
+    if (!mealData) {
+        res.status(404).json({ message: 'No meals found for this user' });
+        return;
+    }
         res.status(200).json(mealData);
         
     } catch (err) {

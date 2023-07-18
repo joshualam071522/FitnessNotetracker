@@ -1,5 +1,7 @@
 const express = require('express');
 const session = require('express-session');
+//* imports sequelize store
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 //* temporary exphbs import
 const exphbs = require('express-handlebars');
@@ -20,11 +22,19 @@ app.use(express.static(path.join(__dirname, 'app/public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const oneDay = 24* 60 * 60 * 1000;
+
 // Set up session
 app.use(session({
   secret: 'your-secret-key',
+  cookie: {
+    maxAge: oneDay
+  },
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
 }));
 
 //*temporary code to set up handlebars
