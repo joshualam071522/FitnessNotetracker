@@ -41,6 +41,9 @@
 {{/each}}
 
 <button class="btn btn-primary" onclick="addNewWorkout()">Add new workout plan</button>
+<form method="POST" action="/api/user/logout">
+  <button class="btn btn-primary">Log out</button>
+</form>
 
 <script>
     function addNewBox() {
