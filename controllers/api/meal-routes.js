@@ -2,17 +2,24 @@ const router = require("express").Router();
 //* imports index.js file too
 const { Meal, User } = require("../../models");
 
-router.post("/", async (req, res) => {
-  try {
-    console.log("Request body: " + JSON.stringify(req.body));
-    const newMeal = await Meal.create(req.body);
-    res.status(200).json(newMeal);
-  } catch (err) {
-    console.log("Error: {" + err + "}");
+router.post('/', async (req, res) => {
 
-    res.status(500).json(err).end();
+  try {
+      console.log(req.session.user_id)
+      const newMeal = await Meal.create({
+      title: req.body.title,
+      content: req.body.content,
+      calories: req.body.calories,
+      user_id: req.session.user_id,
+      })
+
+      console.log(newMeal)
+      res.status(200).json(newMeal)
+
+  } catch (err) {
+      res.status(500).json(err);
   }
-});
+})
 
 router.get("/user", async (req, res) => {
   try {
