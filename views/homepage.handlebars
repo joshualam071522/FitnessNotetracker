@@ -1,0 +1,14 @@
+<div>
+    {{#if loggedIn}}
+    <nav>
+    <a href="/fitness">My Fitness</a>
+    <a href="/logout">Logout</a>
+    </nav>
+    {{else}}
+    <nav>
+    <a href="/login">Login</a>
+    <a href="/signup">Signup</a>
+    </nav>
+    {{/if}}
+    <img src="images/workout-stock-photo" alt="Buff guy holding two dumbells" width="500" height="500">
+</div>
