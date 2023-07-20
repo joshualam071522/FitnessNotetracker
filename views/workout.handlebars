@@ -1,25 +1,58 @@
-  <h1>Workout Plan</h1>
+  <!DOCTYPE html>
+<html>
+<head>
+  <title>Fitness Tracker App - Workout Plan</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/fitness">Fitness Tracker</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/fitness">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/meal">My Meals</a>
+        </li>
+        <li class="nav-item">
+          <form method="POST" action="/api/user/logout">
+            <button class="btn btn-primary">Log out</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container mt-4">
+    <h1 class="section-heading">Workouts</h1>
+
+  <h1> Create Workout Plan</h1>
 
       {{#each workouts as |workout|}}
         <div class="workout">
-          <h3>{{workout.title}}</h2>
-          <p>{{workout.content}}</p>
-          <p>Calories: {{workout.time}}</p>
-            <button class="delete-btn" data-id={{workout.id}}>Delete</button>
+          <h3>Title: {{workout.title}}</h2>
+          <p>Content: {{workout.content}}</p>
+          <p>Time Workedout: {{workout.time}}</p>
+            <button class="btn btn-danger delete-btn" data-id={{workout.id}}>Delete</button>
           </form>
         </div>
       {{/each}}
   
-  <h3>Create a workout plan!</h3>
+
   <form id="create-form">
     <label for="title">Title:</label>
-    <input type="text" name="title" id="title" required>
+    <input type="text" class="form-control"  name="title" id="title" required>
     <label for="content">Content:</label>
-    <textarea name="content" id="content" required></textarea>
+    <textarea name="content" class="form-control"  id="content" required></textarea>
     <label for="time">Time Worked Out:</label>
-    <input type="number" name="calories" id="time" required>
-    <button type="submit">Create</button>
+    <input type="number" class="form-control" name="Time Worked Out" id="time" required>
+    <button type="submit" class="btn btn-primary" >Create</button>
   </form>
+  </div>
 
   <script src="./assets/js/workout.js"></script>
 
