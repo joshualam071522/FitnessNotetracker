@@ -7,7 +7,6 @@ router.get("/", async (req, res) => {
     const mealData = await Meal.findAll({
       where: {user_id: req.session.user_id}
     });
-    // console.log(mealData)
 
     if (!mealData) {
       res.status(404).json({ message: "No meals found with user id!" });
@@ -19,10 +18,15 @@ router.get("/", async (req, res) => {
     console.log(meals);
     console.log('hello');
 
-    res.render("meal", { meals });
+    res.render("meal", { meals, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.log(err);
-    res.status(500).json(err);
+    if (err.message == 'WHERE parameter "user_id" has invalid "undefined" value') {
+      res.render("meal", { loggedIn: req.session.loggedIn });
+    }
+    else {
+      res.status(500).json(err);
+    }
   }
 });
 
