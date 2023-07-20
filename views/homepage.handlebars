@@ -1,17 +1,39 @@
-<div>
-    {{#if loggedIn}}
-    <nav>
-    <a href="/workout">My Workouts</a>
-    <a href="/meal">My Meals</a>
-    <a href="#" onclick="logout()">Logout</a>
-    </nav>
-    {{else}}
-    <nav>
-    <a href="/login">Login</a>
-    <a href="/signup">Signup</a>
-    </nav>
-    {{/if}}
-    <img src="./assets/images/workout-stock-photo" alt="Buff guy holding two dumbells" width="500" height="500">
-</div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/fitness">Fitness Tracker</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      {{#if loggedIn}}
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/workout">My Workouts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/meal">My Meals</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="logout()">Logout</a>
+        </li>
+      </ul>
+      {{else}}
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/signup">Signup</a>
+        </li>
+      </ul>
+      {{/if}}
+    </div>
+  </nav>
 
-<script src="./assets/js/homepage.js"></script>
+  <div class="container mt-4">
+    <img src="/public/assets/images/workout-stock-photo.jpg" alt="Buff guy holding two dumbells" class="img-fluid" width="500" height="500">
+
+    <button class="btn btn-primary mt-4" onclick="getQuote()">Press This For Motivation From Kanye</button>
+    <p id="quote" class="mt-4"></p>
+  </div>
+
+  <script src="./assets/js/homepage.js"></script>
