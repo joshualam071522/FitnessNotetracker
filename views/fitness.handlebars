@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Fitness Tracker App</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/styles.css">
-</head>
+
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/fitness">Fitness Tracker</a>
@@ -15,6 +9,11 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" href="/fitness">Home</a>
+        </li>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="./meal.handlebars">My Meals</a>
         </li>
         <li class="nav-item">
           <form method="POST" action="/api/user/logout">
@@ -28,10 +27,10 @@
   <div class="container mt-4">
     <h2>Welcome, {{username}}!</h2>
     <h3 class="section-heading">Fitness Tracker</h3>
-    <p>Calories Consumed: {{totalCalories}}</p>
+
 
     <div class="box-section">
-      <h3 class="section-heading">Add new box</h3>
+      <h3 class="section-heading">Calories Consumed:</h3>
       {{#each boxes}}
       <div class="row box-row">
         <div class="col-md-4">
