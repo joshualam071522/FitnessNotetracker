@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const { Workout } = require('../models');
+const { Workout } = require("../models");
 
 router.get("/", async (req, res) => {
   try {
     console.log(req.session);
     const workoutData = await Workout.findAll({
-      where: {user_id: req.session.user_id}
+      where: { user_id: req.session.user_id },
     });
 
     if (!workoutData) {
@@ -13,10 +13,9 @@ router.get("/", async (req, res) => {
       return;
     }
 
-    const workouts = workoutData.map((workout) =>
-      workout.get({ plain: true }));
+    const workouts = workoutData.map((workout) => workout.get({ plain: true }));
     console.log(workoutData);
-    console.log('hello');
+    console.log("hello");
 
     res.render("workout", { workouts, loggedIn: req.session.loggedIn });
   } catch (err) {
