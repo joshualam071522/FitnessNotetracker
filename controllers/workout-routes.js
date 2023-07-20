@@ -17,10 +17,15 @@ router.get("/", async (req, res) => {
     console.log(workoutData);
     console.log("hello");
 
-    res.render("workout", { workouts });
+    res.render("workout", { workouts, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.log(err);
-    res.status(500).json(err);
+    if (err.message == 'WHERE parameter "user_id" has invalid "undefined" value') {
+      res.render("workout", { loggedIn: req.session.loggedIn });
+    }
+    else {
+      res.status(500).json(err);
+    }
   }
 });
 
