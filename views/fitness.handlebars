@@ -1,83 +1,128 @@
-<h2>Welcome, {{username}}!</h2>
-<h3>Fitness Tracker</h3>
-<p>Calories Consumed: {{totalCalories}}</p>
-
-<h3>Add new box</h3>
-{{#each boxes}}
-<div class="row">
-  <div class="col-md-4">
-    <div class="form-group">
-      <label for="title">Title:</label>
-      <input type="text" class="form-control" id="title" name="title">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fitness Tracker App</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/fitness">Fitness Tracker</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/fitness">Home</a>
+        </li>
+        <li class="nav-item">
+          <form method="POST" action="/api/user/logout">
+            <button class="btn btn-primary">Log out</button>
+          </form>
+        </li>
+      </ul>
     </div>
-  </div>
-  <div class="col-md-4">
-    <div class="form-group">
-      <label for="content">Content:</label>
-      <input type="text" class="form-control" id="content" name="content">
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="form-group">
-      <label for="calories">Calories:</label>
-      <input type="number" class="form-control" id="calories" name="calories">
-    </div>
-  </div>
-  <div class="col-md-1">
-    <button class="btn btn-danger mt-4" onclick="removeBox(this)">X</button>
-  </div>
-</div>
-{{/each}}
+  </nav>
 
-<button class="btn btn-primary" onclick="addNewBox()">Add new box</button>
+  <div class="container mt-4">
+    <h2>Welcome, {{username}}!</h2>
+    <h3 class="section-heading">Fitness Tracker</h3>
+    <p>Calories Consumed: {{totalCalories}}</p>
 
-<h3>Workout Plan</h3>
-{{#each workouts}}
-<div class="form-group">
-  <label for="workout">Enter Workout Plan here:</label>
-  <input type="text" class="form-control" id="workout" name="workout">
-  <button class="btn btn-danger mt-2" onclick="removeWorkout(this)">X</button>
-</div>
-{{/each}}
-
-<button class="btn btn-primary" onclick="addNewWorkout()">Add new workout plan</button>
-<form method="POST" action="/api/user/logout">
-  <button class="btn btn-primary">Log out</button>
-</form>
-
-<script>
-    function addNewBox() {
-      const newBox = `
-        <div class="row mt-2">
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="title">Title:</label>
-              <input type="text" class="form-control" id="title">
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="content">Content:</label>
-              <input type="text" class="form-control" id="content">
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="calories">Calories:</label>
-              <input type="number" class="form-control" id="calories">
-            </div>
+    <div class="box-section">
+      <h3 class="section-heading">Add new box</h3>
+      {{#each boxes}}
+      <div class="row box-row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" name="title">
           </div>
         </div>
-      `;
-      document.querySelector('.container').insertAdjacentHTML('beforeend', newBox);
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="content">Content:</label>
+            <input type="text" class="form-control" id="content" name="content">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="calories">Calories:</label>
+            <input type="number" class="form-control" id="calories" name="calories">
+          </div>
+        </div>
+        <div class="col-md-1">
+          <button class="btn btn-danger mt-4" onclick="removeBox(this)">X</button>
+        </div>
+      </div>
+      {{/each}}
+
+      <button class="btn btn-primary" onclick="addNewBox()">Add new box</button>
+    </div>
+
+    <div class="workout-section">
+      <h3 class="section-heading">Workout Plan</h3>
+      {{#each workouts}}
+      <div class="form-group workout-row">
+        <label for="workout">Enter Workout Plan here:</label>
+        <input type="text" class="form-control" id="workout" name="workout">
+        <button class="btn btn-danger mt-2" onclick="removeWorkout(this)">X</button>
+      </div>
+      {{/each}}
+
+      <button class="btn btn-primary" onclick="addNewWorkout()">Add new workout plan</button>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script>
+    // JavaScript code here (as shown in the previous response)
+  </script>
+
+  <style>
+    /* Custom CSS styles here */
+    .section-heading {
+      color: #007bff;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 5px;
+      margin-bottom: 20px;
     }
 
-    function addNewWorkout() {
-      const newWorkout = `
-        <div class="form-group mt-2">
-          <label for="workout">Enter Workout Plan here:</label>
-          <input type="text" class="form-control" id="workout">
-        </div>
-      `;
-      document.querySelector('.container').insertAdjacentHTML('beforeend', newWorkout);
-    }</script>
+    .box-row {
+      margin-bottom: 10px;
+    }
+
+    .workout-row {
+      margin-bottom: 10px;
+    }
+
+    .box-section,
+    .workout-section {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+      border-color: #dc3545;
+    }
+
+    .btn-danger:hover {
+      background-color: #c82333;
+      border-color: #c82333;
+    }
+  </style>
