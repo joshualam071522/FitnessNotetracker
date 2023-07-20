@@ -1,9 +1,9 @@
 <div>
     {{#if loggedIn}}
     <nav>
-    <a href="./fitness.handlebars">My Fitness</a>
-    <a href="./meal.handlebars">My Meals</a>
-    <a href="./homepage.handlebars">Logout</a>
+    <a href="/workout">My Workouts</a>
+    <a href="/meal">My Meals</a>
+    <a href="#" onclick="logout()">Logout</a>
     </nav>
     {{else}}
     <nav>
@@ -13,3 +13,4 @@
     {{/if}}
     <img src="./assets/images/workout-stock-photo" alt="Buff guy holding two dumbells" width="500" height="500">
 </div>
+
