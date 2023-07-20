@@ -62,10 +62,4 @@ router.post("/logout", (req, res) => {
   });
 });
 
-//* test code for user login/signup
-// {
-// 	"username": "josh",
-// 	"password": "josh123"
-// }
-
 module.exports = router;

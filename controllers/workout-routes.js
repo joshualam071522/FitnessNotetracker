@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Workout } = require("../models");
 
+//* renders all workouts based on user_id
 router.get("/", async (req, res) => {
   try {
     console.log(req.session);
@@ -20,6 +21,7 @@ router.get("/", async (req, res) => {
     res.render("workout", { workouts, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.log(err);
+    //* conditional that displays a not logged in scenario
     if (err.message == 'WHERE parameter "user_id" has invalid "undefined" value') {
       res.render("workout", { loggedIn: req.session.loggedIn });
     }

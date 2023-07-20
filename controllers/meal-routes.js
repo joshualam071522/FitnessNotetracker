@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Meal } = require('../models');
 
+//* retrieves all meals related to user id
 router.get("/", async (req, res) => {
   try {
     console.log(req.session);
@@ -21,6 +22,7 @@ router.get("/", async (req, res) => {
     res.render("meal", { meals, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.log(err);
+    //* conditional that renders a not logged in scenario
     if (err.message == 'WHERE parameter "user_id" has invalid "undefined" value') {
       res.render("meal", { loggedIn: req.session.loggedIn });
     }

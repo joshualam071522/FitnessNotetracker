@@ -2,8 +2,8 @@ const router = require('express').Router();
 //* imports index.js file too
 const {Workout, User} = require('../../models');
 
-//TODO add get routes for user's workouts
 
+//* creates a new workout
 router.post('/', async (req, res) => {
     
     try {
@@ -22,6 +22,7 @@ router.post('/', async (req, res) => {
     }
 })
 
+//* test insomnia code to check workout and user relationship
 router.get('/user', async (req, res) => {
     try{ 
         console.log(req.session);
@@ -35,42 +36,12 @@ router.get('/user', async (req, res) => {
         }
 
         res.status(200).json(workoutData);
-        //TODO code to render handlebars for workout?
-        // const workout = workoutData.get({ plain: true });
-        // res.render('workout', Workout);
       } catch (err) {
           res.status(500).json(err);
       };     
   });
 
-router.put('/:id', async (req, res) => {
-    try {
-        const updatedWorkoutData = await Workout.update(
-        {
-        title: req.body.title,
-        content: req.body.content,
-        time: req.body.time,
-        }, 
-        {
-            where: {
-                id: req.params.id,
-                user_id: req.session.user_id,
-            },
-        }
-    )
-
-    if (!updatedworkoutData) {
-        res.status(404).json({ message: 'No workout found with this id!' });
-        return;
-    }
-        res.status(200).json(updatedWorkoutData);
-        
-    } catch (err) {
-   console.log(err);
-        res.status(500).json("oops, something went wrong!");
-    }
-})
-
+//* deletes workout based on id and user id
 router.delete('/:id', async (req, res) => {
     try {
         const workoutData = await Workout.destroy({

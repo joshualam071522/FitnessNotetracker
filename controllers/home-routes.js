@@ -1,9 +1,8 @@
 const router = require('express').Router();
 
-//TODO add handlebars template that renders homepage
 
 router.get('/', async (req, res) => {
-    
+    //* pass in loggedIn variable to homepage.handlebars
     res.render('homepage', {loggedIn: req.session.loggedIn});
   });
 
