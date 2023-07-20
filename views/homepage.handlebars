@@ -1,36 +1,27 @@
-<body>
-  <div class="container wrapper">
-<header >
-  <h1><a class="logo" id='homepage' href="/">Fitness Tracker</a></h1>
-      <nav>
-        <ul class="navbar">
-              {{#if loggedIn}}
-              <li><a class="link" href="/workout">My Workouts</a></li>
-               <li><a class="link" href="/meal"> My Meals</a></li>
-               <li><a class="link" href="/" id="logout">Logout</a></li>
-              {{else}}
-               <li><a class="link" href="/login">Login</a></li>
-               <li><a class="link" href="/signup">Sign Up</a></li>
-              {{/if}}
-        </ul>
-      </nav>    
-</header>
+<div class="container wrapper">
+  <header>
+        <nav>
+          <ul class="navbar">
+                {{#if loggedIn}}
+                <li><a class="link" href="/workout">My Workouts</a></li>
+                <li><a class="link" href="/meal"> My Meals</a></li>
+                <li><a class="link" href="/" onclick="logout()">Logout</a></li>
+                {{else}}
+                <li><a class="link" href="/login">Login</a></li>
+                <li><a class="link" href="/signup">Sign Up</a></li>
+                {{/if}}
+          </ul>
+        </nav>    
+  </header>
 
-<main>
-    <img src="./assets/images/workout-stock-photo.jpg" alt="Buff guy holding two dumbells" class="img-fluid" width="500" height="500">
+  <main>
     <button class="btn btn-primary mt-4" onclick="getQuote()">Press This For Motivation From Kanye</button>
     <p id="quote" class="mt-4"></p>
-  </div>
-    
-</main>
-
-<footer class="footer">
-    <div class="row">
-    </div>
-</footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+  </main>
 </div>
-</body>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="./assets/js/homepage.js"></script>
+
 
