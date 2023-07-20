@@ -1,3 +1,5 @@
+var Sequelize = require('sequelize');
+
 let sequelize;
 
 if  (process.env.JAWSDB_URL) {
@@ -17,4 +19,5 @@ if  (process.env.JAWSDB_URL) {
     },
   );
 }
+
 module.exports = sequelize;

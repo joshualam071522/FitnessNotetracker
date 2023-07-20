@@ -18,8 +18,7 @@
   },
   "homepage": "https://github.com/joshualam071522/group7#readme",
   "devDependencies": {
-    "eslint": "^8.44.0",
-    "nodemon": "^3.0.1"
+    "eslint": "^8.44.0"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
