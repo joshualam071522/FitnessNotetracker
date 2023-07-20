@@ -1,14 +1,50 @@
-<div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Tech Word</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <link rel="stylesheet" href="/group7/public/assets/styles.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+
+<body>
+  <div class="container wrapper">
+<header >
+  <h1><a class="logo" href="/">Fitness Tracker</a></h1>
+      <nav>
+        <ul class="navbar">
+              <li><a class="link" href="/fitness">Workouts</a></li>
+               <li><a class="link" href="/meal">Meals</a></li>
+              {{#if loggedIn}}
+               <li><a class="link" href="/" id="logout">Logout</a></li>
+              {{else}}
+               <li><a class="link" href="/login">Login</a></li>
+              {{/if}}
+        </ul>
+      </nav>
+
+    
+</header>
+
+<main>
+    <img src="/group7/public/assets/images/workout-stock-photo.jpg" alt="fitness">
+    {{{body}}}
+    
+</main>
+
+<footer class="footer">
+    <div class="row">
+    </div>
+</footer>
+
     {{#if loggedIn}}
-    <nav>
-    <a href="/fitness">My Fitness</a>
-    <a href="/logout">Logout</a>
-    </nav>
-    {{else}}
-    <nav>
-    <a href="/login">Login</a>
-    <a href="/signup">Signup</a>
-    </nav>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <script src="/js/logout.js"></script>
     {{/if}}
-    <img src="./assets/images/workout-stock-photo" alt="Buff guy holding two dumbells" width="500" height="500">
 </div>
+</body>
+
+</html>
