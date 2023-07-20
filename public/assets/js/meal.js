@@ -16,7 +16,7 @@ const formHandler = async (event) => {
             console.log("successfully created new meal plan");
             location.reload();
         } else {
-            alert('error creating meal')
+            alert('Error creating meal. Make sure to fill out all fields.')
         }
     }
 }

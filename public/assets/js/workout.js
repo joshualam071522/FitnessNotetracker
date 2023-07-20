@@ -16,7 +16,7 @@ const formHandler = async (event) => {
             console.log("successfully created new workout plan");
             location.reload();
         } else {
-            alert('error creating workout plan')
+            alert('Error creating workout plan. Make sure to fill out all fields.')
         }
     }
 }

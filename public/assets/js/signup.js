@@ -17,7 +17,7 @@ const signupHandler = async (event) => {
             alert("successfully signed up!")
             document.location.replace('/');
         } else {
-            alert("error signing up")
+            alert("Username already taken or passwords do not match. Please try again.")
         }
     }
 }

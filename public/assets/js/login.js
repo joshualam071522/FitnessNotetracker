@@ -16,7 +16,7 @@ const loginHandler = async (event) => {
             document.location.replace('/');
 
         } else {
-            alert("error logging in")
+            alert("Incorrect Username or Password. Please try again.")
         }
     }
 }
