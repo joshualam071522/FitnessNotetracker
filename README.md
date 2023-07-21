@@ -4,6 +4,8 @@
 
 ![My Image](./public/assets/images/fitness%20notetracker%20readme%20img.png)
 
+Link to deployed application: https://pacific-eyrie-41501-f23e55fee56a.herokuapp.com/
+
 ## Table of Contents
 
 - [Description](#description)
